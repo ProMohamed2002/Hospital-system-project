@@ -5,10 +5,10 @@
             <i class="fa-solid fa-hand-holding-medical" style="font-size:50px"></i>
         </div>
             <ul  class="link">
-                <li><a href="#home">home</a></li>
-                <li><a href="#contact">contact</a></li>
-                <li><a href="#about">about</a></li>
-                <li><a href="#help">help</a></li>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/">contact</router-link></li>
+                <li><router-link to="/">about</router-link></li>
+                <li><router-link to="/">help</router-link></li>
             </ul>
 
     </div>
@@ -18,8 +18,8 @@
 
         <div class="searching">
         <label for="#s1">name of hospital</label>
-        <input id="#s1" type="text" placeholder="name of hospital">
-        <button>search</button>
+        <input id="#s1" type="text" placeholder="name of hospital" v-model="hospital">
+        <button @click="setHospital(hospital)">search</button>
         <div class="sign"> <i class="fa-solid fa-user" style="font-size: 15px ;color:#fff;"></i><a href="#sign up">Sign up</a></div>
     </div>
     </div>
@@ -28,7 +28,17 @@
 </template>
 <script>
 export default{
-    name : 'main_header'
+    name : 'main_header',
+    data() {
+        return {
+            hospital: "",
+        }
+    },
+    methods: {
+        setHospital(hospital) {
+            localStorage.setItem("hospital", JSON.stringify(hospital));
+        } 
+    },
 }
 </script>
 <style>
@@ -91,7 +101,6 @@ a{
 .header  a:hover{
     padding-right: 5px;
     color: #ffffffff;
-
 }
 .search{
     background-color: #1376ab;

@@ -5,13 +5,13 @@
             <div class="footer-col">
                 <h4>department</h4>
                 <ul>
-                    <li><a href="#">Dental Center</a></li>
-                    <li><a href="#">Pediatrics Dep</a></li>
-                    <li><a href="#">Obstetrics and Gynecology Dep</a></li>
-                    <li><a href="#">General Surgery Dep</a></li>
-                    <li><a href="#">Nephrology Dep</a></li>
-                    <li><a href="#">Neurosurgery Dep</a></li>
-                    <li><a href="#">Ear, Nose and Throat Dep</a></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('Dental Center')">Dental Center</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('Pediatrics Dep')">Pediatrics Dep</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('Obstetrics and Gynecology Dep')">Obstetrics and Gynecology Dep</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('General Surgery Dep')">General Surgery Dep</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('Nephrology Dep')">Nephrology Dep</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('neurology')">Neurosurgery Dep</router-link></li>
+                    <li><router-link to="/departement" v-on:click ="setDepartement('Ear, Nose and Throat Dep')">Ear, Nose and Throat Dep</router-link></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -35,9 +35,14 @@
 </template>
 <script>
 export default{
-    name:'FooTer'
+    name:'FooTer',
+    methods: {
+        setDepartement(departement) {
+            this.$router.push( {name: "Departement"} );
+            localStorage.setItem("departement", JSON.stringify(departement));
+        }
+    }
 }
-
 </script>
 <style>
 *{

@@ -1,4 +1,5 @@
 <template>
+    <main_header/>
     <div>
       <div class="slider">
     <img src="../assets/a.jpg" alt="Image 1">
@@ -30,11 +31,18 @@
         </div>
       </div>
     </div>
+    <FooTer/>
   </template>
   
   <script>
+  import main_header from './header.vue'
+  import FooTer from './footer.vue'
   export default {
     name: 'HoMe',
+    components: {
+            main_header,
+            FooTer
+    },
     mounted() {
       // JavaScript code for slider functionality
       var images = document.querySelectorAll('.slider img');

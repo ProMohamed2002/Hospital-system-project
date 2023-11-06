@@ -1,22 +1,16 @@
 <template>
-  <main_header/>
-  <HoMe/>
-  <FooTer/>
- 
+  <router-view />
 </template>
 
 <script>
-import main_header from "./components/header.vue"
-import HoMe from "./components/Home.vue"
-import FooTer from "./components/footer.vue"
+//import main_header from "./components/header.vue"
+//import HoMe from "./components/Home.vue"
+//import Departement from "./components/Departement.vue";
+//import FooTer from "./components/footer.vue"
 export default {
   name: 'App',
   components: {
-    main_header,
-    HoMe,
-    FooTer,
-    
-    
+    //main_header,
     
   }
 }
