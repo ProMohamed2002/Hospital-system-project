@@ -8,7 +8,7 @@
                 <li><router-link to="/">Home</router-link></li>
                 <li><router-link to="/">contact</router-link></li>
                 <li><router-link to="/">about</router-link></li>
-                <li><router-link to="/">help</router-link></li>
+                <li><router-link to="/pay">Pay</router-link></li>
             </ul>
 
     </div>
