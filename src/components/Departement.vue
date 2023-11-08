@@ -80,7 +80,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,700;1,200&display=swap');
     *{
         font-family: 'Poppins', sans-serif;
