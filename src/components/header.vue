@@ -92,6 +92,21 @@ body{
     
     
 }
+li::before{
+    content: '';
+    position:absolute;
+    bottom: -5px;
+    left:1;
+    background-color: #f1e6e6;
+    height: 2px;
+    box-sizing: border-box;
+    width:0;
+    transition: width 0.3s ease;
+
+}
+li:hover::before{
+    width: 30px;
+}
 a{
     text-decoration: none;
     color: black;
