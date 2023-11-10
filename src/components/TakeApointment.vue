@@ -1,9 +1,9 @@
 <script setup>
 import { reactive } from "vue";
 import { RouterView, useRouter } from "vue-router";
-import appointment from "../components/appointment.vue";
-import inpute from "../components/inpute.vue";
-// import vueImageCropUpload from 'vue-image-crop-upload'
+import appointment from "./components/appointment.vue";
+
+
 const router = useRouter();
 
 const dt = reactive({
