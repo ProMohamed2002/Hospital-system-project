@@ -25,17 +25,7 @@ function submit() {
 
 <template>
   <div>
-    <!-- <input
-      type="text"
-      v-model.trim.lazy="dt.doctorName"
-      placeholder="Enter Doctor Name"
-    />
-    <input
-      type="text"
-      v-model.trim.lazy="dt.department"
-      placeholder="Enter Department"
-    />
-  </div>-->
+ 
 
     <div class="name">Dc. {{ NameOfDocter }}</div>
     <br />
