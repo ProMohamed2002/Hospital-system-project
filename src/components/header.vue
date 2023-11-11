@@ -37,6 +37,7 @@ export default{
     methods: {
         setHospital(hospital) {
             localStorage.setItem("hospital", JSON.stringify(hospital));
+            location.reload()
         } 
     },
 }

@@ -44,6 +44,7 @@
                 `https://my-json-server.typicode.com/Yahia-Ibrahim/my_Database/main/db.json/hospitals`
             )
             if(result.status == 200 && result.data.length>0) {
+                    
                     console.warn(result.data)
                     let hospitals = result.data
                     let hospital = this.filteredHospitals(hospitals)[0]

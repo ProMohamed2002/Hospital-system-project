@@ -5,13 +5,13 @@
             <div class="footer-col">
                 <h4>department</h4>
                 <ul>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('Dental Center')">Dental Center</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('Pediatrics Dep')">Pediatrics Dep</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('Obstetrics and Gynecology Dep')">Obstetrics and Gynecology Dep</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('General Surgery Dep')">General Surgery Dep</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('Nephrology Dep')">Nephrology Dep</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('neurology')">Neurosurgery Dep</router-link></li>
-                    <li><router-link to="/departement" v-on:click ="setDepartement('Ear, Nose and Throat Dep')">Ear, Nose and Throat Dep</router-link></li>
+                    <li><router-link to="/departement/DentalCenter" v-on:click ="setDepartement('Dental Center')" >Dental Center</router-link></li>
+                    <li><router-link to="/departement/Pediatrics" v-on:click ="setDepartement('Pediatrics')">Pediatrics Dep</router-link></li>
+                    <li><router-link to="/departement/Obstetrics and Gynecology" v-on:click ="setDepartement('Obstetrics and Gynecology')">Obstetrics and Gynecology Dep</router-link></li>
+                    <li><router-link to="/departement/General Surgery" v-on:click ="setDepartement('General Surgery')">General Surgery Dep</router-link></li>
+                    <li><router-link to="/departement/Nephrology" v-on:click ="setDepartement('Nephrology')">Nephrology Dep</router-link></li>
+                    <li><router-link to="/departement/neurology" v-on:click ="setDepartement('neurology')">Neurosurgery Dep</router-link></li>
+                    <li><router-link to="/departement/Ear, Nose and Throat" v-on:click ="setDepartement('Ear, Nose and Throat')">Ear, Nose and Throat Dep</router-link></li>
                 </ul>
             </div>
             <div class="footer-col">
