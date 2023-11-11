@@ -136,11 +136,38 @@ export default{
     color:#ffffff;
 
 }
-@media(max-width: 574){
-
+@media (max-width: 768px) {
+    .container1 {
+      padding-left: 15px;
+      padding-right: 15px;
+      display: block;
+    }
     
+    .footer-col {
+      width: 50%;
+      padding: 0 10px;
+      display: block;
+    }
+    
+    .img-size {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .footer img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .footer-col {
+      width: 100%;
+      padding: 0 10px;
+      display: block;
+    }
+
 }
-
-
-
 </style>

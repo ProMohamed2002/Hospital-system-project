@@ -6,11 +6,10 @@
         </div>
             <ul  class="link">
                 <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/">contact</router-link></li>
-                <li><router-link to="/">about</router-link></li>
+                <li><router-link to="/departement">Departement</router-link></li>
                 <li><router-link to="/pay">Pay</router-link></li>
+                <li><router-link to="/radio">acount</router-link></li>
             </ul>
-
     </div>
     </div>
     <div class="search">
@@ -20,7 +19,7 @@
         <label for="#s1">name of hospital</label>
         <input id="#s1" type="text" placeholder="name of hospital" v-model="hospital">
         <button @click="setHospital(hospital)">search</button>
-        <div class="sign"> <i class="fa-solid fa-user" style="font-size: 15px ;color:#fff;"></i><a href="#sign up">Sign up</a></div>
+        <div class="sign"><i class="fa-solid fa-user" style="font-size: 15px ;color:#fff;"></i><router-link to="/login">Sign in</router-link></div>
     </div>
     </div>
     
@@ -32,14 +31,18 @@ export default{
     data() {
         return {
             hospital: "",
+            showOptions: false
         }
     },
     methods: {
         setHospital(hospital) {
             localStorage.setItem("hospital", JSON.stringify(hospital));
-        } 
+        },
+    toggleOptions() {
+      this.showOptions = !this.showOptions;
     },
-}
+  }
+};
 </script>
 <style scoped>
 *{
@@ -95,7 +98,7 @@ body{
 li::before{
     content: '';
     position:absolute;
-    bottom: -5px;
+    bottom: -5;
     left:1;
     background-color: #f1e6e6;
     height: 2px;
@@ -119,6 +122,7 @@ a{
 }
 .search{
     background-color: #1376ab;
+    margin-bottom: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,9 +133,7 @@ a{
 .boxh{
     max-width: 400px;
 }
-@media (max-width: 767px){
-
-    
+@media (max-width: 767px){ 
 }
 label{
     padding-left: 0;

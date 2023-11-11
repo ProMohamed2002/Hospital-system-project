@@ -6,9 +6,8 @@
                 <div class="box"  v-for="doctor in doctors" :key="doctor.id">
                     <img src="../assets/Adel.png" alt="doctor's image" >
                     <h3>{{ doctor.name }}</h3>
-                    
-                    <router-link to="#" class="btn">book an appointmnet</router-link>
-                </div>
+                    <router-link to="/Take" class="btn">book an appointmnet</router-link>
+                    </div>
             </div>
         </div>      
     <FooTer/>

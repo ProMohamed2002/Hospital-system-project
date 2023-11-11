@@ -161,6 +161,8 @@
     text-align: center;
     padding-left: 0;
     line-height: 1.5;
+    margin-bottom: 5px;
+    
   }
   h1{
     color: #fff;
@@ -168,4 +170,5 @@
     font-family: Arial, Helvetica, sans-serif;
     
   }
+  
   </style>
