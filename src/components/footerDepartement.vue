@@ -35,11 +35,12 @@
 </template>
 <script>
 export default{
-    name:'FooTer',
+    name:'footerDepartement',
     methods: {
         setDepartement(departement) {
             this.$router.push( {name: "Departement"} );
             localStorage.setItem("departement", JSON.stringify(departement));
+            location.reload();
         }
     }
 }
