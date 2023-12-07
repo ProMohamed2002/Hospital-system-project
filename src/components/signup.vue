@@ -21,7 +21,7 @@ import main_header from "./header.vue"
     },
     methods: {
       async signUp() {
-                let result = await axios.post("http://localhost:3000/users/",{
+                let result = await axios.post("https://my-json-server.typicode.com/Yahia-Ibrahim/my_Database/main/db.json/users/",{
                     name:this.name,
                     email:this.email,
                     password:this.password

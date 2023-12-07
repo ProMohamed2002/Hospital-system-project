@@ -22,9 +22,9 @@ function submit() {
   <div>
  
 
-    <div class="name">Dc. {{ dt.doctorName }}</div>
+    <div class="name" style="color:#ffffffff">Dc. {{ dt.doctorName }}</div>
     <br />
-    <div class="name">Department : {{ dt.department }}</div>
+    <div class="name" style="color:#ffffffff">Department : {{ dt.department }}</div>
     <button @click="submit">Show</button>
     <div v-show="dt.flag" class="sh">
       <appointment />
@@ -38,7 +38,7 @@ function submit() {
   align-content: center;
   justify-content: center;
   width: 20%;
-  background-color: greenyellow;
+  background-color: #1376ab;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -63,11 +63,11 @@ button {
   border: 1px solid #ccc;
 }
 button:hover {
-  background-color: rgb(39, 236, 39);
+  background-color: #375f74;
   color: white;
 }
 .sh {
   margin-top: 20px;
-  background-color: aqua;
+  background-color:  #094d71;
 }
 </style>

@@ -24,11 +24,10 @@ import main_header from "./header.vue"
       {
         let res = await axios.get(`https://my-json-server.typicode.com/Yahia-Ibrahim/my_Database/main/db.json/users?email=${this.email}&password=${this.password}`);
 
-         
-         console.warn(res)
-         if(res.status==200&&res.data.length>0){
-          localStorage.setItem("user-info",JSON.stringify(res.data))
-         this.goTohome()
+        this.goTohome()
+        console.warn(res)
+        if(res.status==200&&res.data.length>0){
+        localStorage.setItem("user-info",JSON.stringify(res.data))
          
          }
         },

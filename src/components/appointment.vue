@@ -8,7 +8,9 @@ const appoint = reactive({
 });
 
 const confirm = () => {
+  
   console.log(appoint.time);
+  
 };
 </script>
 <template>
@@ -21,7 +23,7 @@ const confirm = () => {
     </select>
   </div>
   <div class="sh">
-    <p>Selected Time:{{ appoint.time }}</p>
+    <p style="color:#ffffffff">Selected Time:{{ appoint.time }}</p>
 
     <input
       type="text"
