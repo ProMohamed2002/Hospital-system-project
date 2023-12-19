@@ -1,50 +1,52 @@
 <template>
     <div class="header">
         <div class="container">
-        <div class="logo">
-            <i class="fa-solid fa-hand-holding-medical" style="font-size:50px"></i>
+        <div class="logo"><img src="../assets/ministryofhealth.png" alt="">
         </div>
             <ul  class="link">
-                <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/departement">Departement</router-link></li>
-                <li><router-link to="/pay">Pay</router-link></li>
-                <li><router-link to="/radio">acount</router-link></li>
+                <li><div class="operation" @click="home">Home</div></li>
+                <li><div class="operation" @click="profile">profile</div></li>
+                <li><router-link class="operation" @click="logout" to="/">logout</router-link></li>
             </ul>
     </div>
-    </div>
-    <div class="search">
-        <div class="boxh">
-
-        <div class="searching">
-        <label for="#s1">name of hospital</label>
-        <input id="#s1" type="text" placeholder="name of hospital" v-model="hospital">
-        <button @click="setHospital(hospital)">search</button>
-        <div class="sign"><i class="fa-solid fa-user" style="font-size: 15px ;color:#fff;"></i><router-link to="/login">Sign in</router-link></div>
-    </div>
-    </div>
-    
     </div>
 </template>
 <script>
 export default{
     name : 'main_header',
-    data() {
-        return {
-            hospital: "",
-            showOptions: false
-        }
-    },
-    methods: {
-        setHospital(hospital) {
-            localStorage.setItem("hospital", JSON.stringify(hospital));
-            location.reload()
-        } 
+    methods: { 
+        logout() {
+            localStorage.setItem("user_name", "");
+            localStorage.setItem("password", "");
+            localStorage.setItem("user_type", "");
         },
-    toggleOptions() {
-      this.showOptions = !this.showOptions;
-    },
-  }
+        home() {
+            if(localStorage.getItem("user_type") === "patient") {
+                this.$router.push("/PatientHome");
+            }
+                
+            else if(localStorage.getItem("user_type") === "doctor") {
+                this.$router.push("/DoctorHome");
+            }
+                else if(localStorage.getItem("user_type") === "manager") {
+                this.$router.push("/ManagerHome");
+            }
+        },
+        profile() {
+            if(localStorage.getItem("user_type") === "patient") {
+                this.$router.push("/PatientEditProfile");
+            }
+                
+            else if(localStorage.getItem("user_type") === "doctor") {
+                this.$router.push("/DoctorEditProfile");
+            }
+                else if(localStorage.getItem("user_type") === "manager") {
+                this.$router.push("/ManagerEditProfile");
+            }
+        }
 
+    }
+  }
 </script>
 <style scoped>
 *{
@@ -57,6 +59,10 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 .header{
+    background-image: url('../assets/23018.jpg');
+    opacity: 0.8;
+    background-size: 100% 320px;
+    background-position: center;
     margin: 0;
     background-color:#1376ab ;
     position: relative;
@@ -76,7 +82,8 @@ body{
    font-size: 60px;
    padding:0 10px;
    color: rgb(241, 241, 241);
-   }
+    width:50px;
+}
 .link{
     display:flex;
     flex-wrap: wrap;
@@ -84,6 +91,8 @@ body{
     align-items: center;
     justify-content: space-between;
     color: black;
+    background-color: lightgray;
+    margin-top: 272px;
 
 }
 .header li{
@@ -112,15 +121,16 @@ li::before{
 li:hover::before{
     width: 30px;
 }
-a{
+.operation{
     text-decoration: none;
     color: black;
     padding-right: 4px;
     transition: all 0.3s ease;
 }
-.header  a:hover{
+.header  .operation:hover{
     padding-right: 5px;
     color: #ffffffff;
+    cursor: pointer;
 }
 .search{
     background-color: #1376ab;

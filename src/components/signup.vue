@@ -1,159 +1,188 @@
 
-<script>
-import main_header from "./header.vue" 
- import FooTer from "./footer.vue" 
- import axios from "axios"
-   export default{
-    name:'signup',
-    components:{
-            main_header,
-            FooTer
-        },
-    data(){
+<template>
+  <main_header/>
+    <v-dialog width="400" max-height="400" height="100%" class="card" v-model="dialog" transition="dialog-top-transition" persistent>
+      <v-card variant="outlined">
+       <v-card-text>
+        Signin
+       </v-card-text>
+     <div style="width: 2000px; margin-left:80px"><input  style="background-color: white; margin:3px"  type="text" placeholder=" user name" v-model="name1" required autofocus/></div>
+     <div style="width: 2000px; margin-left:80px"><input  style="background-color: white; margin:3px"  type="email" placeholder="  email" v-model="email1" required autofocus/></div>
+      <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="password" placeholder="  password" v-model="pas1" required autofocus/></div>
+        <div style="width: 2000px; margin-left:80px"> <input  style="background-color: white; margin:3px"  type="tel" pattern="[0,9]{11}" placeholder="  phone number" required v-model="phone_number1" autofocus/></div>
+          <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="date" placeholder="  borth date" v-model="birth_date1" required autofocus/></div>
+            <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="password" placeholder="  civil_id" pattern="00000000000000" v-model="civil_id1" required autofocus/></div>
+        <button style="margin-bottom:5px;" type="submit" class="submit" @click="submit()"  >sign up</button>
+        <div style="margin-bottom:10px; margin-top:10px;">already have an account?<router-link to="/">login</router-link></div>
+      </v-card>
+      </v-dialog>
+    <div class="pag">
+  </div>
+    <FooTer/>
+  
+  </template>
+  
+  
+<script >
+import axios from 'axios';
+import FooTer from './footer.vue';
+import main_header from './header.vue'
+export default {
+  name: 'signup',
+  components: {
+    FooTer,
+    main_header
+  },
+  data(){
         return{
-            hospitals:[],
-            input_catagorey:"",
-              email:"",
-            password:"",
+            email1:'',//email
+            pas1:'',//password
+            name1:'',//user name
+            phone_number1:'',
+            birth_date1:'',
+            civil_id1:'',
+            doctor:false,
+            manger:false,
+            person:false,
+            dialog:true,
+            obj:{
+              user_name:'',
+              email_address:"",
+              password:"",
+              phone_number:'',
+              birth_date:'',
+              civil_id:'',
+            },
+           
             
         };
-
     },
     methods: {
-      async signUp() {
-                let result = await axios.post("https://my-json-server.typicode.com/Yahia-Ibrahim/my_Database/main/db.json/users/",{
-                    name:this.name,
-                    email:this.email,
-                    password:this.password
-                });
-                console.warn(result);
-                if(result.status == 201) {
-                    localStorage.setItem("user-info", JSON.stringify(result.data));
-                    this.$router.push( {name: "Home"} );
-                }
-            },
-        goTohome() {
-      this.$router.push("/");
-    }
+      async submit()
+      {
+        this.obj.user_name=this.name1
+        this.obj.email_address=this.email1
+        this.obj.password=this.pas1
+        this.obj.phone_number=this.phone_number1
+        this.obj.birth_date=this.birth_date1
+        this.obj.civil_id=this.civil_id1
+        localStorage.setItem("user_name", this.obj.user_name)
+        localStorage.setItem("password", this.obj.password)
+        await axios.post("http://localhost:8081/addPatient", this.obj).then(
+          this.$router.push("/PatientHome")
+        ).catch((error) => {
+        //Handle errors
+        console.error('Error:', error);
+        });
+                  
+      },
+      doc(){
+        this.doctor=true
+      
+      },
+      man(){
+        this.manger=true
+        
+      },
+      pat(){
+        this.person=true
+        
+      }
     }, 
-    
     }
 </script>
 
-<template>
-<main_header/>
-  <form class="card" style="padding-top:10px" @submit.prevent="signUp()">
-    <div class="name"><input type="text" placeholder="enter your name" v-model="name"/></div>
-    <div class="mail"><input type="email" placeholder="email" v-model="email"/></div>
-    <div class="password"><input type="password" placeholder="password" v-model="password"/></div>
-  <div >
-      <label class="bb" >
-        <input type="radio" value="doctor" v-model="input_catagorey" />
-        <div class="font">Doctor</div>
-      </label>
-     <label class="bb" >
-        <input type="radio" value="manager" v-model="input_catagorey" />
-        <div class="font">Manager</div>
-      </label>
-      <label class="bb" >
-        <input type="radio"  value="patient" v-model="input_catagorey" />
-        <div class="font">Patient</div>
-      </label>
-    </div>
-     
-      <button type="submit" class="submit" @click="signUp()"  >sign up</button>
-      <div class="anchors">
-      </div>
-      <div class="anchors">already have acount <router-link to="/login">login</router-link></div>
-    </form>
-  
-  <FooTer/>
-
-</template>
-
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
-.mail
-{
-  margin : 20px 0 0 0;
-
-  display: block;
-
+input:invalid {
+  border: 2px solid red;
 }
-.password
-{
-  margin-top: 20px;
+.pag{
+  height: 1000px;
+  width: 900px;
+  margin: auto;
+  background-image: url('../assets/ministryofhealth.png');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 50px;
+}
+  .mail
+  {
+    margin : 20px 0 0 0;
   
-}
-.submit
-{
-  font-size:medium;
-  font-weight: bold;
-  margin-top: 20px;
+    display: block;
+  
+  }
+  .password
+  {
+    margin-top: 20px;
+    
+  }
+  .pp{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding-left:2px ;
+    margin-left: 100px;
+  }
+  .submit
+  {
+    font-size:medium;
+    font-weight: bold;
+    margin-top: 20px;
+    display: block;
+    margin-right: auto;
+    border-radius: 30px;
+    margin-left: auto;
+    background-color:royalblue;
+    border-color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color:white ;
+    width: 150px;
+    height: 30px;
+  }
+  .anchors
+  {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: larger;
+    font-weight: bold;
+    font-family: cursive;
+  }
+  .anchors a
+  {
+      color: white;
+  }
+  .anchors  :hover 
+  {
+      color : black;
+      
+  }
+  .options{
+    margin-top: 5px;
+    width: 100px;
+    margin-left: 5px;
+
+  }
+  .chooseH
+  {
+    margin : 70px 0 0 0;
+  
   display: block;
-  margin-right: auto;
-  border-radius: 30px;
-  margin-left: auto;
-  background-color:royalblue;
-  border-color: white;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  color:white ;
-  width: 150px;
-  height: 30px;
-}
-
-.card
-{
-  text-align: center;
-  border: 1px solid rgb(2, 5, 4,0.5);
-  margin: 200px auto 200px auto ;
-  display: block;
-  background-color: #1376ab ;
-  color:white; 
-  width:400px;
- height: 500px;
-}
-.anchors
-{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: larger;
-  font-weight: bold;
-  font-family: cursive;
-}
-.anchors a
-{
-    color: white;
-}
-.anchors  :hover 
-{
-    color : black;
-}
-
-.chooseH
-{
-  margin : 70px 0 0 0;
-
-display: block;
-}
-
-
-.font
-{
-  font-size: medium;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-}
-.bb
-{
-  margin-left: 10px;
-  margin-right: 10px; 
-  margin-top: 20px ;
-}
-body
-{
- 
-  background-size: 100% auto;
-}
-
-</style>
+  }
+  
+  
+  .font
+  {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+  }
+  body
+  {
+   
+    background-size: 100% auto;
+  }
+  
+  </style>
