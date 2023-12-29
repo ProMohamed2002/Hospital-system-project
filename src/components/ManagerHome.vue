@@ -2,7 +2,10 @@
     <div>
         <main_header/>
         <div class="search-hospital">
-            <input type="text" class="search-box" v-model="hospital" placeholder="search for hospital by name">
+            <input type="text" class="search-box" v-model="hospital" placeholder="search for hospital by name" list="hospital-list">
+            <datalist id="hospital-list">
+            <option v-for="hospital in filteredHospitals" :value="hospital.name" :key="hospital.id"></option>
+            </datalist>
             <button class="search-button" @click="search">search</button>
         </div>
         <div class="ctr">
@@ -41,7 +44,11 @@
         },
         methods: {
             search() {
-                localStorage.setItem("hospital", this.hospital);
+                const selectedHospital = this.hospitals.find(hospital =>
+            hospital.name.toLowerCase() === this.hospital.toLowerCase()
+            );
+            console.log(selectedHospital.name)
+                localStorage.setItem("hospital", selectedHospital.name);
                 this.$router.push("/ManagerSearchResults");
             },
             department(hospitalName) {
@@ -55,6 +62,18 @@
                 location.reload();
             }
         },
+        computed: {
+    filteredHospitals() {
+      if (this.hospital === "") {
+        return this.hospitals; // Return all hospitals if search query is empty
+      } else {
+        const hospital = this.hospital.toLowerCase();
+        return this.hospitals.filter(hospitall =>
+          hospitall.name.toLowerCase().includes(hospital)
+        );
+      }
+    },
+},
         async mounted() {
             if(localStorage.getItem("user_type") !== "manager") {
                 this.$router.push("/");
