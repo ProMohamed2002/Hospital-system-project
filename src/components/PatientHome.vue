@@ -1,14 +1,21 @@
 <template>
-  <div>
       <main_header/>
     <div class="search-hospital">
-        <input type="text" class="search-box" v-model="hospital" placeholder="search for hospital by name" list="hospital-list">
-        <datalist id="hospital-list">
-        <option v-for="hospital in filteredHospitals" :value="hospital.name" :key="hospital.id"></option>
-        </datalist>
-          <button class="search-button" @click="search">search</button>
+        <input type="text" class="search-box" v-model="hospital" placeholder=" search..." list="hospital-list">
+            <datalist id="hospital-list">
+            <option v-for="hospital in filteredHospitals" :value="hospital.name" :key="hospital.id"></option>
+            </datalist>
+            <div class="bo" >
+                <select v-model="searchby" name="serchby" class="custom-select">
+                    <option disabled value="">Search by</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Hospital">Hospital</option>
+                  </select>
+            <button class="search-button" @click="search">search</button>
+
     </div>
       <div class="ctr">
+        <h class="animated-heading">Hospitals</h>
           <div class="hospital" v-for="h in this.hospitals" :key="h.id">
               <div class="name">
                   <router-link class="hospital-name" to="/HospitalInfo" @click="department(h.name)">{{ h.name }}</router-link>

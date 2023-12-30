@@ -18,6 +18,9 @@ import HospitalInfo from "./components/HospitalInfo"
 import PatientSearchResults from "./components/PatientSearchResults"
 import PatientEditProfile from "./components/PatientEditProfile"
 import ManagerEditProfile from "./components/ManagerEditProfile"
+import book from "./components/book.vue"
+import DoctorHome from "./components/DoctorHome"
+
 import { createRouter, createWebHistory } from "vue-router"
 const routes = [
     {
@@ -45,12 +48,6 @@ const routes = [
         component: radio_button ,
         path: "/radio"
     },
-    {
-        name: "Take",
-        component: TakeApointment ,
-        path: "/Take"
-    },
-    
     {
         name: "ManagerHome",
         component: ManagerHome,
@@ -120,7 +117,22 @@ const routes = [
         name: "ManagerEditProfile",
         component: ManagerEditProfile,
         path: "/ManagerEditProfile"
-    }
+    },
+    {
+        name: "TakeApointment",
+        component: TakeApointment,
+        path: "/TakeApointment"
+    },
+    {
+        name: "book",
+        component: book,
+        path: "/book"
+    },
+    {
+        name: "DoctorHome",
+        component: DoctorHome,
+        path: "/DoctorHome"
+    },
 
 ];
 const router = createRouter({

@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
-
+    @Query(value="SELECT s FROM Appointment s WHERE s.doctor = :doctor")
+    public List<Appointment> fetchAppointmentsUsingDoctor(@Param("doctor") String doctor);
     @Query(value="SELECT s FROM Appointment s")
     public List<Appointment> fetchAllFromCustom();
 

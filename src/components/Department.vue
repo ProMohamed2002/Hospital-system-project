@@ -144,7 +144,7 @@
         width: 200px;
         text-decoration: none;
         text-align: center;
-        float: right;
+     
     }
     .green-btn-add:hover{
         letter-spacing: 1px;

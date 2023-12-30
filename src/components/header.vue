@@ -1,20 +1,32 @@
 <template>
-    <div class="header">
-        <div class="container">
-        <div class="logo"><img src="../assets/ministryofhealth.png" alt="">
-        </div>
-            <ul  class="link">
-                <li><div class="operation" @click="home">Home</div></li>
-                <li><div class="operation" @click="profile">profile</div></li>
-                <li><router-link class="operation" @click="logout" to="/">logout</router-link></li>
-            </ul>
+    <div class="header" :class="{ 'fixed': isFixed }">
+      <div class="container">
+        <ul class="link">
+          <li><div class="operation" @click="home">Home</div></li>
+          <li><div class="operation" @click="profile">Profile</div></li>
+          <li><router-link class="operation" @click="logout" to="/">Logout</router-link></li>
+        </ul>
+      </div>
     </div>
-    </div>
-</template>
+  </template>
 <script>
 export default{
     name : 'main_header',
+    data(){
+        return{
+            isFixed: false,
+        }
+    },
+    mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+     },
+    beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+      },
     methods: { 
+        handleScroll() {
+      this.isFixed = window.scrollY > 0;
+    },
         logout() {
             localStorage.setItem("user_name", "");
             localStorage.setItem("password", "");
@@ -58,129 +70,48 @@ export default{
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
-.header{
-    background-image: url('../assets/23018.jpg');
-    opacity: 0.8;
-    background-size: 100% 320px;
-    background-position: center;
-    margin: 0;
-    background-color:#1376ab ;
-    position: relative;
-    height: 100hv;
-    width: 100%;
+.header {
+  background-color: #1376ab;
+  position: relative;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
 }
-.container{
-    max-width: 1170px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding:10px 50px;
-    margin: auto;
-}
-.logo{
-   font-size: 60px;
-   padding:0 10px;
-   color: rgb(241, 241, 241);
-    width:50px;
-}
-.link{
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    color: black;
-    background-color: lightgray;
-    margin-top: 272px;
 
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
-.header li{
-    padding-left: 10px;
-    margin-left:30px ;
-    list-style: none;
-    text-decoration:none;
-    font-weight: 500;
-    font-size:larger;
-    transition: 0.2s;
-    
-    
-}
-li::before{
-    content: '';
-    position:absolute;
-    bottom: -5;
-    left:1;
-    background-color: #f1e6e6;
-    height: 2px;
-    box-sizing: border-box;
-    width:0;
-    transition: width 0.3s ease;
 
+.container {
+  max-width: 1170px;
+  margin: auto;
 }
-li:hover::before{
-    width: 30px;
-}
-.operation{
-    text-decoration: none;
-    color: black;
-    padding-right: 4px;
-    transition: all 0.3s ease;
-}
-.header  .operation:hover{
-    padding-right: 5px;
-    color: #ffffffff;
-    cursor: pointer;
-}
-.search{
-    background-color: #1376ab;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 6px;
-}
-.boxh{
-    max-width: 400px;
-}
-@media (max-width: 767px){ 
-}
-label{
-    padding-left: 0;
-    color: #fff;
-    font-size: larger;
-    font-weight: bold;
-}
-label:hover{
-    cursor: pointer;
-}
-input{
-    border : 2px solid #fff;
-    width:300px;
-    height: 30px;
-}
-button{
-    height: 30px;
-    color: #fff;
-    width: 60px;
-    margin-left: 2px;
-    background: #072230;
-    border: 2px solid transparent;
-}
-button:hover{
-    cursor:pointer;
-}
-.sign{
-    margin-top: 3px;
-}
-.sign a{
-    color: #fff;
-    margin-left: -10;
-    padding-left: 6px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:13px ;
 
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+
+.link li {
+  margin: 0 15px;
+}
+
+.operation {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.operation:hover {
+  background-color: #0d5f8b;
+  border-radius: 5px;
 }
 </style>

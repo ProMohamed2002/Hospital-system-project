@@ -2,13 +2,25 @@
     <div>
         <main_header/>
         <div class="search-hospital">
-            <input type="text" class="search-box" v-model="hospital" placeholder="search for hospital by name" list="hospital-list">
+            <input type="text" class="search-box" v-model="hospital" placeholder=" search..." list="hospital-list">
             <datalist id="hospital-list">
             <option v-for="hospital in filteredHospitals" :value="hospital.name" :key="hospital.id"></option>
             </datalist>
+            <div class="bo" >
+                <select v-model="searchby" name="serchby" class="custom-select">
+                    <option disabled value="">Search by</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Hospital">Hospital</option>
+                  </select>
             <button class="search-button" @click="search">search</button>
+
         </div>
+        </div>
+       
         <div class="ctr">
+            <router-link class="green-btn-add" to="/AddHospital">add new hospital</router-link>
+
+            <h class="animated-heading">Hospitals</h>
             <div class="hospital" v-for="h in this.hospitals" :key="h.id">
                 <div class="name">
                     <router-link class="hospital-name" to="/ManagerDepartments" @click="department(h.name)">{{ h.name }}</router-link>
@@ -19,7 +31,6 @@
                     <router-link @click="setHospital(h.name)" to="/EditHospital" class="edit-btn"> edit </router-link>
                 </div>
             </div>
-            <router-link class="green-btn-add" to="/AddHospital">add new hospital</router-link>
             
         </div>
         <Footer/>
@@ -36,6 +47,7 @@
             return {
                 hospital:"",
                 hospitals: [],
+                searchby:'',
             }
         },
         components: {
@@ -81,13 +93,44 @@
             let array = await axios.get("http://localhost:8081/customFetchHospital")
             this.hospitals = array.data
             console.log(this.hospitals)
-        }
-
-        
+        }        
     }
 </script>
 
 <style>
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: blanchedalmond;
+    margin-left: 510px;
+    width: 500px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.custom-select::after {
+    content: '▼'; 
+    font-size: 10px;
+    color: #333; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+  }
+  
+  .custom-select:hover, .custom-select:focus {
+    border-color: #666;
+  }
+  
+  .custom-select::-moz-focus-inner {
+    border: 0;
+  }
     .search-hospital {
         justify-content: center;
        
@@ -113,7 +156,8 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 500px;
+        margin-top: 5px;
+        width: 200px;
         background-color: #1376ab;
         color: white;
         font-size: large;
@@ -206,4 +250,20 @@
         letter-spacing: 1px;
         transform: scale(1.02);
     }
+    @keyframes colorChange {
+        0% { color: #3498db; }
+        50% { color: #e74c3c; }
+        100% { color: #3498db; }
+      }
+  
+      .animated-heading {
+        font-family: 'Arial', sans-serif;
+        font-size: 32px;
+        animation: colorChange 4s infinite;
+        border: 2px solid #3498db;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
 </style>

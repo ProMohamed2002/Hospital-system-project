@@ -1,10 +1,10 @@
 <template>
     <main_header/>
-    <center><h1>edit profile</h1></center>
+    <center><h1>profile</h1></center>
     <form @submit="submit">
         <label>user name:</label>
         <input type="text" inputmode="text" placeholder="user name" required v-model="this.name" readonly style="background-color: skyblue;">
-        <label>civil id:</label>
+        <label>National id:</label>
         <input type="text" inputmode="number" pattern="[0-9]{14}" placeholder="88888888888888" required v-model="this.civilID" readonly style="background-color: skyblue;">
         <label>birth date:</label>
         <input type="date" required v-model="this.birthDate" readonly style="background-color: skyblue;">
@@ -79,7 +79,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 h1{
     font-size: 50px;
     font-weight: bold;
@@ -90,7 +90,7 @@ form{
 form input {
     width: 500px;
     height: 50px;
-    margin: 20px;
+    margin: auto;
     border: 2px solid skyblue;
     border-radius: 5px;
 }
@@ -100,7 +100,7 @@ form input:invalid {
 form label{
     font-weight: bold;
     font-size: 30px;
-    margin-left: 30px;
+    margin-left: 510px;
 }
 
 form .add-btn:hover {

@@ -76,7 +76,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 h1{
     font-size: 50px;
     font-weight: bold;
@@ -87,7 +87,7 @@ form{
 form input {
     width: 500px;
     height: 50px;
-    margin: 20px;
+    margin: auto;
     border: 2px solid skyblue;
     border-radius: 5px;
 }
@@ -97,7 +97,7 @@ form input:invalid {
 form label{
     font-weight: bold;
     font-size: 30px;
-    margin-left: 30px;
+    margin-left: 510px;
 }
 
 form .add-btn:hover {

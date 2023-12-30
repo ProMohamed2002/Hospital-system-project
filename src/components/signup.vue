@@ -8,11 +8,21 @@
        </v-card-text>
      <div style="width: 2000px; margin-left:80px"><input  style="background-color: white; margin:3px"  type="text" placeholder=" user name" v-model="name1" required autofocus/></div>
      <div style="width: 2000px; margin-left:80px"><input  style="background-color: white; margin:3px"  type="email" placeholder="  email" v-model="email1" required autofocus/></div>
+     <span v-if="!isValidEmail" style="color: red;">Invalid email address</span>
       <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="password" placeholder="  password" v-model="pas1" required autofocus/></div>
         <div style="width: 2000px; margin-left:80px"> <input  style="background-color: white; margin:3px"  type="tel" pattern="[0,9]{11}" placeholder="  phone number" required v-model="phone_number1" autofocus/></div>
-          <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="date" placeholder="  borth date" v-model="birth_date1" required autofocus/></div>
-            <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="password" placeholder="  civil_id" pattern="00000000000000" v-model="civil_id1" required autofocus/></div>
-        <button style="margin-bottom:5px;" type="submit" class="submit" @click="submit()"  >sign up</button>
+          <div style="width: 2000px; margin-left:80px"> <input style="background-color: white; margin:3px" type="date" placeholder="  birth date" v-model="birth_date1" required autofocus/></div>
+          <span v-if="!isBirthDateEntered" style="color: red;">Please enter a valid birth date</span>
+   
+          <button
+          style="margin-bottom:5px;"
+          type="submit"
+          class="submit"
+          @click="submit()"
+          :disabled="!isBirthDateValid"
+        >
+          Sign up
+        </button>
         <div style="margin-bottom:10px; margin-top:10px;">already have an account?<router-link to="/">login</router-link></div>
       </v-card>
       </v-dialog>
@@ -45,6 +55,7 @@ export default {
             manger:false,
             person:false,
             dialog:true,
+            isBirthDateEntered:true,
             obj:{
               user_name:'',
               email_address:"",
@@ -58,23 +69,62 @@ export default {
         };
     },
     methods: {
+      isBirthDateValid() {
+      const selectedDate = new Date(this.birth_date1);
+      const currentDate = new Date();
+      const minDate = new Date(currentDate.getFullYear() - 100, currentDate.getMonth(), currentDate.getDate());
+      const maxDate = new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate());
+
+      return (
+        !!this.birth_date1 &&
+        selectedDate <= currentDate &&
+        selectedDate >= minDate &&
+        selectedDate <= maxDate
+      );
+    },
+      formattedBirthDate() {
+      const selectedDate = new Date(this.birth_date1);
+      const formattedDate = selectedDate.toISOString().split("T")[0];
+      console.log(formattedDate)
+      return formattedDate;
+    },
+      isValidEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(this.email1);
+    },
       async submit()
       {
+        if (!this.isValidEmail()) {
+        alert('Invalid email address');
+        return;
+      }
+      if (!this.isBirthDateValid()) {
+        alert('Please enter a valid birth date');
+        return;
+      }
         this.obj.user_name=this.name1
         this.obj.email_address=this.email1
         this.obj.password=this.pas1
         this.obj.phone_number=this.phone_number1
-        this.obj.birth_date=this.birth_date1
+        this.obj.birth_date=this.formattedBirthDate()
         this.obj.civil_id=this.civil_id1
         localStorage.setItem("user_name", this.obj.user_name)
         localStorage.setItem("password", this.obj.password)
+        if(this.person){
         await axios.post("http://localhost:8081/addPatient", this.obj).then(
           this.$router.push("/PatientHome")
         ).catch((error) => {
         //Handle errors
         console.error('Error:', error);
+        });}
+        else if(this.doctor){
+          await axios.post("http://localhost:8081/addPatient", this.obj).then(
+          this.$router.push("/DoctorHome")
+        ).catch((error) => {
+        //Handle errors
+        console.error('Error:', error);
         });
-                  
+        }            
       },
       doc(){
         this.doctor=true

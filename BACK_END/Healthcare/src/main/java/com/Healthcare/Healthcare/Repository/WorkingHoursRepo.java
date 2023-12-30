@@ -19,4 +19,6 @@ public interface WorkingHoursRepo extends JpaRepository<WorkingHours, Integer> {
 
     @Query(value="DELETE FROM WorkingHours w WHERE w.week_day = :day and w.doctor = :doctor")
     void deleteWorkingHoursByDayAndDoctor(@Param("day") String day, @Param("doctor") String doctor);
+    @Query(value="SELECT s FROM WorkingHours s WHERE s.doctor = :doctor")
+    List<WorkingHours> fetchWorkingHoursUsingDoctor(@Param("doctor")String doctor);
 }

@@ -11,14 +11,12 @@
                     <router-link @click="setHospital(this.name)" to="/EditHospital" class="edit-btn"> edit </router-link>
                 </div>
         </div>
-        <Footer/>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
     import main_header from './header.vue'
-    import Footer from './footer.vue'
     export default {
         name: 'ManagerSearchResults',
         data() {
@@ -28,8 +26,7 @@
             }
         },
         components: {
-            main_header,
-            Footer
+            main_header
         },
         methods: {
             setHospital(hospitalName) {
@@ -67,6 +64,7 @@
         border-radius: 5px;
         padding: 30px 20px;
         width: 90%;
+       
         height: 120px;
         margin-top: 30px;
         margin: auto;
@@ -115,4 +113,21 @@
         cursor: pointer;
         letter-spacing: 1px;
     }
+    @keyframes colorChange {
+        0% { color: #3498db; }
+        50% { color: #e74c3c; }
+        100% { color: #3498db; }
+      }
+  
+      .animated-heading {
+        font-family: 'Arial', sans-serif;
+        font-size: 32px;
+        animation: colorChange 4s infinite;
+        border: 2px solid #3498db;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        margin: 50px;
+      }
 </style>
