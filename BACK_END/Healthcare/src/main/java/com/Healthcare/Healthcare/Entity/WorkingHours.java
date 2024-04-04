@@ -33,4 +33,5 @@ public class WorkingHours {
     @Column(name = "DOCTOR")
     private String doctor;
 
+
 }

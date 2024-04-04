@@ -28,4 +28,12 @@ public class WorkingHoursService {
     public void deleteWeekDayByDayAndDoctor(String day, String doctor) {
         workingHoursRepo.deleteWorkingHoursByDayAndDoctor(day, doctor);
     }
+    public List<WorkingHours> fetchWorkingHoursUsingDoctor(String doctor)
+    {
+
+        return workingHoursRepo.fetchWorkingHoursUsingDoctor(doctor);
+    }
+    public List<WorkingHours> fetchWorkingHoursByDoctor(String doctor) {
+        return workingHoursRepo.fetchWorkingHoursUsingDoctor(doctor);
+    }
 }

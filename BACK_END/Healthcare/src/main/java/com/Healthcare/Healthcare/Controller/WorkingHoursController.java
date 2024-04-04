@@ -20,6 +20,10 @@ public class WorkingHoursController {
     public WorkingHours postDetails(@RequestBody WorkingHours workingHours) {
         return workingHoursService.saveWorkingHours(workingHours);
     }
+    @GetMapping("/customFetchWorkingHoursByDoctor")
+    public List<WorkingHours> fetchController(@RequestParam String doctor) {
+        return workingHoursService.fetchWorkingHoursByDoctor(doctor);
+    }
 
     @GetMapping("/customFetchWorkingHours")
     public List<WorkingHours> fetchController() {

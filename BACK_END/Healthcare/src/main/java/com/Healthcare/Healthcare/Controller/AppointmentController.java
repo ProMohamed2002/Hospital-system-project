@@ -29,10 +29,21 @@ public class AppointmentController {
     public List<Appointment> customFetch(@RequestParam String doctor, @RequestParam String week_day) {
         return appointmentService.fetchAppointmentsUsingDoctorAndWeek(doctor, week_day);
     }
+    @GetMapping("/customDoctor")
+    public List<Appointment> customFetchbyDoctor(@RequestParam String doctor) {
+        System.out.println(doctor);
+        return appointmentService.fetchAppointmentsUsingDoctor(doctor);
+    }
+
 
     @DeleteMapping("/customDeleteAppointment")
     public void customDelete(@RequestParam String doctor, @RequestParam String day) {
         appointmentService.deleteAppointmentByDoctorAndDay(doctor, day);
+    }
+    @GetMapping("/unbooked/{doctor}")
+    public List<Appointment> getfreeAppointment(@PathVariable String doctor)
+    {
+        return appointmentService.getfreeAppointment(doctor);
     }
     /*
     @PutMapping("/customUpdateDoctor")

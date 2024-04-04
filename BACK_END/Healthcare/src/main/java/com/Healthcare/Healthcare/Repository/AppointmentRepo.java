@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface AppointmentRepo extends JpaRepository<Appointment, Integer> {
-    @Query(value="SELECT s FROM Appointment s WHERE s.doctor = :doctor")
-    public List<Appointment> fetchAppointmentsUsingDoctor(@Param("doctor") String doctor);
+
     @Query(value="SELECT s FROM Appointment s")
     public List<Appointment> fetchAllFromCustom();
 
-    @Query(value="SELECT s FROM Appointment s WHERE s.doctor =: doctor AND s.week_day =: weekday")
+    @Query(value="SELECT s FROM Appointment s WHERE s.doctor = :doctor AND s.week_day = :weekday")
     public List<Appointment> fetchAppointmentsUsingDoctorAndWeek(@Param("doctor") String doctor, @Param("weekday") String weekDay);
-
+    @Query(value="SELECT s FROM Appointment s WHERE s.doctor = :doctor")
+    public List<Appointment> fetchAppointmentsUsingDoctor(@Param("doctor") String doctor);
     @Modifying
     @Transactional
     @Query(value="DELETE FROM Appointment a WHERE a.doctor = :doctor and a.week_day = :day")
